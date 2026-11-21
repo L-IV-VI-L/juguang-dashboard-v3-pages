@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123e83">
+  <title>聚光传媒 · 服务商中台数据大屏</title>
+  <link rel="stylesheet" href="dashboard.css?v=widescreen-1">
+  <script defer src="snapshot.js"></script>
+  <script defer src="monthly.js?v=video-target-1"></script>
+  <script defer src="dashboard.js?v=widescreen-pages-1"></script>
+</head>
+<body>
+  <main class="board">
+    <header class="masthead">
+      <h1>
+        <img class="juguang-logo" src="juguang-logo.png" alt="" width="724" height="1364">
+        <span>聚光传媒服务商中台数据大屏</span>
+      </h1>
+      <div class="timestamp"><small>数据快照</small><time id="snapshot-time">—</time></div>
+      <div class="certification">
+        <img class="brand-symbol" src="official-gold-badge.png" alt="" width="56" height="56">
+        <div class="certification-copy"><strong>抖音电商金牌服务商</strong><span lang="en">OFFICIAL CERTIFIED PARTNER</span></div>
+      </div>
+    </header>
+    <section class="overview-scroll" aria-labelledby="summary-title" tabindex="0">
+      <div class="overview">
+        <h2 id="summary-title">经营数据</h2>
+        <div class="overview-grid" id="overview-grid"></div>
+      </div>
+    </section>
+    <div class="details">
+      <section class="shops" aria-labelledby="shops-title">
+        <div class="section-head">
+          <div class="shop-heading"><h2 id="shops-title">商家经营明细</h2><small id="shop-period"></small></div>
+          <button type="button" id="rotation" class="page-button" aria-controls="shop-rows room-list" aria-pressed="false">暂停轮播</button>
+          <nav class="pager" aria-label="商家分页">
+            <button type="button" class="page-button" id="prev-shop" aria-label="上一页商家">‹</button>
+            <span id="shops-page">1 / 1</span>
+            <button type="button" class="page-button" id="next-shop" aria-label="下一页商家">›</button>
+          </nav>
+        </div>
+        <div class="table-wrap" tabindex="0" aria-label="商家经营明细表，可左右滚动">
+          <table>
+            <thead><tr><th scope="col">店铺</th><th scope="col">体验分</th><th scope="col">支付 GMV</th><th scope="col">发货 GMV</th><th scope="col">结算 GMV</th><th scope="col">支付单量</th><th scope="col">发货单量</th><th scope="col">结算单量</th></tr></thead>
+            <tbody id="shop-rows"></tbody>
+          </table>
+        </div>
+      </section>
+      <section class="rooms" aria-labelledby="rooms-title">
+        <div class="section-head">
+          <h2 id="rooms-title">在播直播间</h2>
+          <nav class="pager" aria-label="直播间分页">
+            <button type="button" class="page-button" id="prev-room" aria-label="上一页直播间">‹</button>
+            <span id="rooms-page">1 / 1</span>
+            <button type="button" class="page-button" id="next-room" aria-label="下一页直播间">›</button>
+          </nav>
+        </div>
+        <div class="room-list" id="room-list"></div>
+      </section>
+    </div>
+    <section class="monthly" aria-label="经营考核">
+      <section aria-labelledby="monthly-title">
+        <div class="section-head"><h2 id="monthly-title">月度考核</h2><span id="assess-period" class="month-note"></span></div>
+        <div id="assessments" class="assessment-grid"></div>
+      </section>
+      <section id="quarter-group" aria-labelledby="quarter-title" hidden>
+        <div class="section-head"><h2 id="quarter-title">季度考核</h2><span id="quarter-period" class="month-note"></span></div>
+        <div id="quarter-assessments" class="assessment-grid"></div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

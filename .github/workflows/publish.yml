@@ -1,0 +1,94 @@
+name: Publish the V3 dashboard
+run-name: V3 ${{ inputs.generated_at }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: Compressed public display snapshot
+        required: true
+        type: string
+      sha256:
+        description: Public snapshot SHA-256
+        required: true
+        type: string
+      revision:
+        description: Matching dashboard asset commit
+        required: true
+        type: string
+      generated_at:
+        description: Snapshot timestamp, Asia/Shanghai
+        required: true
+        type: string
+
+permissions: {}
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Build the static dashboard
+        shell: python
+        run: |
+          import base64
+          import gzip
+          import hashlib
+          import io
+          import json
+          import os
+          from pathlib import Path
+          import re
+          import shutil
+
+          inputs = json.loads(Path(os.environ["GITHUB_EVENT_PATH"]).read_text())["inputs"]
+          if inputs["revision"] != os.environ["GITHUB_SHA"] or len(inputs["payload"]) > 64000:
+              raise ValueError("Snapshot and template revision do not match")
+          packed = base64.b64decode(inputs["payload"], validate=True)
+          with gzip.GzipFile(fileobj=io.BytesIO(packed)) as stream:
+              data = stream.read(1024 * 1024 + 1)
+          if len(data) > 1024 * 1024 or hashlib.sha256(data).hexdigest() != inputs["sha256"]:
+              raise ValueError("Snapshot checksum or size is invalid")
+          snap = json.loads(data)
+          if snap["generatedAt"] != inputs["generated_at"]:
+              raise ValueError("Snapshot timestamp does not match")
+          site = Path("_site")
+          site.mkdir()
+          for name in ("index.html", "dashboard.css", "dashboard.js", "monthly.js", "juguang-logo.png",
+                       "business-trend.png", "official-gold-badge.png", "business-barlow-semibold.ttf",
+                       "business-barlow-LICENSE.txt"):
+              shutil.copyfile(name, site / name)
+          for row in [*snap["shops"], *snap["liveRooms"]]:
+              logo = row.get("logoUrl")
+              if logo is None:
+                  continue
+              if not re.fullmatch(r"shop-logos/[0-9]+-[a-f0-9]{20}\.(?:png|jpg|webp|gif)", logo):
+                  raise ValueError("Unexpected shop logo path")
+              (site / "shop-logos").mkdir(exist_ok=True)
+              shutil.copyfile(logo, site / logo)
+          (site / "snapshot.js").write_bytes(b"window.DASHBOARD_SNAPSHOT = " + data + b";\n")
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+          retention-days: 1
+
+  deploy:
+    needs: prepare
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.publish.outputs.page_url }}
+    steps:
+      - id: publish
+        uses: actions/deploy-pages@v4
