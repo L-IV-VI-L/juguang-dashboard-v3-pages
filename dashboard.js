@@ -39,7 +39,25 @@
     const row = element("div", null, "delta");
     const hasValue = Number.isFinite(value);
     const magnitude = hasValue ? number.format(Math.abs(value)) + "%" : blank;
-    row.append(element("span", "环比幅度"), element("span", magnitude, hasValue ? "rise" : ""));
+    const amount = element("span", magnitude, hasValue ? "rise" : "");
+    if (hasValue) {
+      const svgNamespace = "http://www.w3.org/2000/svg";
+      const arrow = document.createElementNS(svgNamespace, "svg");
+      arrow.setAttribute("class", "trend-arrow");
+      arrow.setAttribute("viewBox", "0 0 10 10");
+      arrow.setAttribute("aria-hidden", "true");
+      arrow.setAttribute("focusable", "false");
+      const path = document.createElementNS(svgNamespace, "path");
+      path.setAttribute("d", "M5 9V1M1 5l4-4 4 4");
+      path.setAttribute("fill", "none");
+      path.setAttribute("stroke", "currentColor");
+      path.setAttribute("stroke-width", "1.4");
+      path.setAttribute("stroke-linecap", "round");
+      path.setAttribute("stroke-linejoin", "round");
+      arrow.appendChild(path);
+      amount.prepend(arrow);
+    }
+    row.append(element("span", "环比幅度"), amount);
     return row;
   }
 

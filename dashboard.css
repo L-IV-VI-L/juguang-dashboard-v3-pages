@@ -109,16 +109,11 @@ button { font: inherit; }
 .metric strong { display: block; color: #252931; font: 600 1.29rem/1.71rem "Business Barlow"; }
 .metric strong small { font: 500 .86rem/1.71rem "PingFang SC"; }
 .metric .delta { display: flex; align-items: center; gap: .29rem; color: #898b8f; font-size: .86rem; line-height: 1.14rem; }
-.metric .rise { color: #f44; }
-.metric .rise::before {
-  display: inline-block;
+.metric .rise { display: inline-flex; align-items: center; gap: .29rem; color: #f44; }
+.metric .trend-arrow {
+  flex: none;
   width: .57rem;
   height: .57rem;
-  margin-right: .29rem;
-  transform: rotate(180deg);
-  content: "";
-  background: currentColor;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath d='M4 0a.5.5 0 00-.5.5v6.97a.5.5 0 001 0V.5A.5.5 0 004 0zM.146 3.646a.5.5 0 000 .708l3.5 3.5a.5.5 0 00.708 0l3.5-3.5a.5.5 0 00-.708-.708L4 6.793.854 3.646a.5.5 0 00-.708 0z'/%3E%3C/svg%3E");
 }
 .metric-trend {
   flex: 1 1 0%;
