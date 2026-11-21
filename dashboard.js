@@ -37,11 +37,9 @@
   ];
   function businessChange(value) {
     const row = element("div", null, "delta");
-    const pct = Number.isFinite(value) ? number.format(Math.abs(value)) + "%" : blank;
-    const direction = value > 0 ? "rise" : value < 0 ? "fall" : "";
-    const amount = element("span", pct, direction);
-    if (direction) amount.setAttribute("aria-label", (value > 0 ? "上涨 " : "下降 ") + pct);
-    row.append(element("span", "较上周期"), amount);
+    const hasValue = Number.isFinite(value);
+    const magnitude = hasValue ? number.format(Math.abs(value)) + "%" : blank;
+    row.append(element("span", "环比幅度"), element("span", magnitude, hasValue ? "rise" : ""));
     return row;
   }
 
