@@ -1,6 +1,7 @@
 :root {
-  color-scheme: light;
-  --canvas: #eff4fa;
+  color-scheme: only light;
+  --canvas: #fff;
+  background-color: var(--canvas);
   --panel: #fff;
   --panel-raised: #e8f1ff;
   --ink: #112b4b;
@@ -30,7 +31,7 @@ button { font: inherit; }
   grid-template-rows: auto auto minmax(0, 1fr) auto;
   gap: .95rem;
   padding: 1rem var(--gutter);
-  background: linear-gradient(180deg, #f9fbff, var(--canvas) 55%);
+  background: var(--canvas);
 }
 .section-head, .pager { display: flex; align-items: center; }
 .masthead {
@@ -209,7 +210,7 @@ td small, .muted { color: var(--muted); }
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   padding: .65rem var(--pad) .8rem;
-  background: linear-gradient(105deg, #f5f9ff, #fff 62%);
+  background: var(--panel);
   border: 1px solid var(--rule);
   box-shadow: inset 0 2px var(--accent);
   border-radius: 5px;
