@@ -1,0 +1,66 @@
+html[data-theme="blue"] {
+  color-scheme: only dark;
+  --canvas: #0b2d5d;
+  --panel: #123766;
+  --panel-raised: #23558c;
+  --ink: #fff;
+  --secondary: #e1eeff;
+  --muted: #bdd2ec;
+  --accent: #a4daff;
+  --down: #ccdaf0;
+  --rule: #3c6490;
+  --rule-soft: #294e79;
+}
+
+html[data-theme="blue"] .overview {
+  color: var(--secondary);
+  background: #17477e;
+  box-shadow: inset 0 0 0 1px var(--rule);
+}
+
+html[data-theme="blue"] .overview h2,
+html[data-theme="blue"] .metric strong,
+html[data-theme="blue"] .assessment-main strong,
+html[data-theme="blue"] .room dl > :first-child dd {
+  color: var(--ink);
+}
+
+html[data-theme="blue"] .metric .delta {
+  color: #d2e1f3;
+}
+
+html[data-theme="blue"] .metric .rise {
+  color: #ffa5ac;
+}
+
+html[data-theme="blue"] .metric-trend {
+  filter: saturate(.72) brightness(1.95);
+}
+
+html[data-theme="blue"] .certification {
+  color: #ffe0a2;
+}
+
+html[data-theme="blue"] .certification-copy span {
+  color: #eed4a4;
+}
+
+html[data-theme="blue"] .shops > .section-head,
+html[data-theme="blue"] .rooms > .section-head,
+html[data-theme="blue"] .monthly {
+  background: #153e70;
+}
+
+html[data-theme="blue"] th,
+html[data-theme="blue"] .monthly .month-note {
+  color: var(--secondary);
+  background: #204b7b;
+}
+
+html[data-theme="blue"] .monthly .month-note {
+  border-color: var(--rule);
+}
+
+html[data-theme="blue"] .track {
+  background: #355b85;
+}

@@ -62,7 +62,7 @@ jobs:
               raise ValueError("Snapshot timestamp does not match")
           site = Path("_site")
           site.mkdir()
-          for name in ("index.html", "dashboard.css", "dashboard.js", "monthly.js", "juguang-logo.png",
+          for name in ("index.html", "dashboard.css", "blue-preview.css", "dashboard.js", "monthly.js", "juguang-logo.png",
                        "business-trend.png", "official-gold-badge.png", "business-barlow-semibold.ttf",
                        "business-barlow-LICENSE.txt"):
               shutil.copyfile(name, site / name)
