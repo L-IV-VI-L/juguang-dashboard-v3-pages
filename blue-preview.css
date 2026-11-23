@@ -10,9 +10,20 @@ html[data-theme="blue"] {
   --down: #ccdaf0;
   --rule: #3c6490;
   --rule-soft: #294e79;
+  --detail-columns: minmax(0, 1.85fr) minmax(0, 1fr);
+}
+
+html[data-theme="blue"] .masthead h1 {
+  font-size: 1.78rem;
+  gap: .52em;
+}
+
+html[data-theme="blue"] .juguang-logo {
+  height: 3.3rem;
 }
 
 html[data-theme="blue"] .overview {
+  padding: 1.12rem var(--pad) 1.25rem;
   color: var(--secondary);
   background: #17477e;
   box-shadow: inset 0 0 0 1px var(--rule);
@@ -29,6 +40,15 @@ html[data-theme="blue"] .metric .delta {
   color: #d2e1f3;
 }
 
+html[data-theme="blue"] .overview h2 {
+  margin-bottom: .8rem;
+}
+
+html[data-theme="blue"] .metric strong {
+  font-size: 1.58rem;
+  line-height: 1.9rem;
+}
+
 html[data-theme="blue"] .metric .rise {
   color: #ffa5ac;
 }
@@ -41,8 +61,34 @@ html[data-theme="blue"] .certification {
   color: #ffe0a2;
 }
 
+html[data-theme="blue"] .certification-copy strong {
+  font-size: 1.17rem;
+}
+
 html[data-theme="blue"] .certification-copy span {
   color: #eed4a4;
+  font-size: .72rem;
+}
+
+html[data-theme="blue"] .details,
+html[data-theme="blue"] .monthly:has(#quarter-group:not([hidden])) {
+  grid-template-columns: var(--detail-columns);
+}
+
+html[data-theme="blue"] .shops th:first-child { width: 27%; }
+html[data-theme="blue"] .shops th:nth-child(2) { width: 5.5%; }
+
+html[data-theme="blue"] .monthly:has(#quarter-group:not([hidden])) {
+  padding-inline: 0;
+  column-gap: var(--gutter);
+}
+
+html[data-theme="blue"] .monthly:has(#quarter-group:not([hidden])) > section {
+  padding-inline: var(--pad);
+}
+
+html[data-theme="blue"] .assessment-meta {
+  font-size: .8rem;
 }
 
 html[data-theme="blue"] .shops > .section-head,
