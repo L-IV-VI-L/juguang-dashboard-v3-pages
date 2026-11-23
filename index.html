@@ -9,6 +9,7 @@
   <script>
     if (new URLSearchParams(location.search).get("theme") === "blue") {
       document.documentElement.dataset.theme = "blue";
+      document.querySelector('meta[name="color-scheme"]').content = "only dark";
       document.querySelector('meta[name="theme-color"]').content = "#0b2d5d";
     }
   </script>
