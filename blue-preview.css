@@ -26,7 +26,7 @@ html[data-theme="blue"] .overview {
   padding: 1.12rem var(--pad) 1.25rem;
   color: var(--secondary);
   background: #17477e;
-  box-shadow: inset 0 0 0 1px var(--rule);
+  box-shadow: inset 0 2px var(--accent), inset 0 0 0 1px var(--rule);
 }
 
 html[data-theme="blue"] .overview h2,
@@ -89,6 +89,10 @@ html[data-theme="blue"] .monthly:has(#quarter-group:not([hidden])) > section {
 
 html[data-theme="blue"] .assessment-meta {
   font-size: .8rem;
+}
+
+html[data-theme="blue"] .monthly {
+  box-shadow: none;
 }
 
 html[data-theme="blue"] .shops > .section-head,
